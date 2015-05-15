@@ -1,0 +1,174 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset="utf-8")
+    meta(name="description", content="nss")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    title Savings Multiplied Part III
+    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css")
+    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css")
+    link(href='http://fonts.googleapis.com/css?family=Corben:400,700', rel='stylesheet', type='text/css')
+    link(rel="stylesheet", type="text/css", href="/stylesheets/auction.css")
+
+  body
+    .container
+
+      // TOP SECTION OF PAGE
+      .col-md-12.rh150.light-teal
+        p Mockup Page -- click "Buy" on navigation bar to view auction page
+        .row
+          .col-md-1
+          .col-md-10.rh100.white.inner-top
+            ul.link-list.link-list-right.pad-top-20
+              li.pillbox.baby-blue About
+              li.pillbox.green Contact
+              li.pillbox.purple Blog
+              li.pillbox.pink Press
+            img.img-responsive.logo(src="/images/savings-multiplied-logo.png", alt="logo")
+            img.img-responsive.tag-line(src="/images/tagline.png", alt="tagline")
+          .col-md-1
+      
+      // NAVBAR
+      .row
+        .col-md-12.rh50.light-pink
+          nav.navbar.navbar-default
+            .light-pink
+              // Collect the nav links, forms, and other content for toggling
+              .collapse.navbar-collapse#bs-example-navbar-collapse-1
+                ul.nav.navbar-nav
+                  li: a(href="#") Buy
+                  li: a(href="#") Sell
+                  li: a(href="#") How It Works
+                  li: a(href="#") Links
+                  li: a(href="#") Community
+                form.navbar-form.navbar-nav(role="search")
+                  .form-group
+                    input.form-control(type="text", placeholder="Search")
+                  button.btn.btn-default(type="submit") Submit
+
+      // BOTTOM SECTION OF PAGE
+      .col-md-12.dark-teal.rh1000
+        .row
+          .col-md-1
+          .col-md-10.white.rh800
+            .col-md-4.rh800.green-form-auction.green-text-auction
+              .nothing
+                .nothing
+                  form(action="#", method="POST")
+                    br
+                    legend Limit your search by:
+                    input#search-terms(type="text", name="search-terms", class="input-buffer")
+                    label(for="search") Search
+                    br
+                    br
+                    legend Condition
+
+                    input(type="radio", name="condition-type", value="new")
+                    | New
+                    br
+                    input(type="radio", name="condition-type", value="gently-used")
+                    | Gently used
+                    br
+                    br
+                    legend Size
+                    input(type="radio", name="size", value="4")
+                    | 4
+                    input(type="radio", name="size", value="8", class="10pct")
+                    | 8
+                    br
+                    input(type="radio", name="size", value="5")
+                    | 5
+                    input(type="radio", name="size", value="9")
+                    | 9
+                    br
+                    input(type="radio", name="size", value="6")
+                    | 6
+                    input(type="radio", name="size", value="10")
+                    | 10
+                    br
+                    input(type="radio", name="size", value="7")
+                    | 7
+                    input(type="radio", name="size", value="11")
+                    | 11
+                    br
+                    br
+                    legend Season
+                    input(type="radio", name="season", value="all-seasons")
+                    | All seasons
+                    br
+                    input(type="radio", name="season", value="spring")
+                    | Spring
+                    br
+                    input(type="radio", name="season", value="summer")
+                    | Summer
+                    br
+                    input(type="radio", name="season", value="fall")
+                    | Fall
+                    br
+                    input(type="radio", name="season", value="winter")
+                    | Winter
+                    br
+                    legend Type
+                    input(type="radio", name="season", value="any")
+                    | Any
+                    br
+                    input(type="radio", name="season", value="one-piece")
+                    | One-piece
+                    input(type="radio", name="season", value="tops")
+                    | Tops
+                    br
+                    input(type="radio", name="season", value="bottoms")
+                    | Bottoms
+                    br
+                    br
+                    label(for="feedback-type") Brand 
+                    select(id="feedback-1", name="type")
+                      option Janie and Jack
+                      option Osh Kosh
+                      option Another brand
+                    button(type="submit") V
+                    br
+            .col-md-8.rh800
+              p All > Twin > B/G
+              label(for="feedback-type") Sort by:
+              select#feedback-2(name="type")
+                option Price
+                option Size
+                option something else
+              button#seeItems(type="submit") Submit
+              | prev | page num | next | view all
+              br
+              p Change slider value, then click Submit above to display products
+              .slider
+                label(for="minPrice") Minimum Price
+                input#minPrice(type="range", min=0, max=500, value=25, step=10, oninput="nss.outputUpdate(value, id)")
+                output#js-minPrice(for="minPrice") 25
+              .slider
+                label(for="maxPrice") Maximum Price
+                input#maxPrice(type="range", min=0, max=500, value=25, step=10, oninput="nss.outputUpdate(value, id)")
+                output#js-maxPrice(for="maxPrice") 25
+              #auction-items
+
+        .row
+          .col-md-12.dark-teal.rh60
+            ul.link-list.pad-top-20
+              li Link here
+              li Link here
+              li Link here
+              li Link here
+              li Link here
+      .col-md-1
+
+    script(src="https://code.jquery.com/jquery-1.11.2.min.js")
+    script(src="https://code.jquery.com/jquery-migrate-1.2.1.min.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js")
+    script(type="text/javascript", src="/javascripts/main.js")
+
+    script(type="text/javascript").
+      var nss = {};
+      $(document).ready(function() {
+        nss.outputUpdate = function(price, id) {
+          $('#js-' + id).val(price);
+        }
+      });

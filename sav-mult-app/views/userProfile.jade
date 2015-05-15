@@ -1,0 +1,45 @@
+doctype html
+head
+  link(href='http://fonts.googleapis.com/css?family=Oswald', rel='stylesheet', type='text/css')
+  title= username | profile
+  link(rel="stylesheet", href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css")
+  link(rel='stylesheet', href='/stylesheets/style.css')
+  link(rel="stylesheet", href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css")
+  meta(name="viewport", content="width=device-width, initial-scale=1")
+
+body
+  .container
+    ul.nav.nav-pills.navbar-right
+      li(role="presentation"): a(href="/index") Add items to sell
+      li(role="presentation", class="active"): a(href="#") View your items / profile
+      //li(role="presentation", class="active"): a(href="/users/profile") Your profile
+      li(role="presentation"): a(href="/users/logout") Logout
+
+    p Username: #{username}
+    p
+    p Number of items #{items.length}
+
+    table.table.table-hover
+      tbody
+        tr
+          th
+          th: a(href="#") Title
+          th: a(href="#") Image
+          th: a(href="#") Price
+          th: a(href="#") End Date
+          th
+          th
+      each val in items
+        tr.bookItem(id="book_#{val._id}")
+          td: span.glyphicon.glyphicon-plus-sign(aria-hidden="true", id="#{val._id}")
+          td: em #{val.title}
+          td Image
+            .additionalContent(class="showOrHide_#{val._id}")
+              img(src="http://placehold.it/200x150")
+          td $#{val.price.toFixed(2)}
+          td #{val.endDate}
+          td: button.btn.btn-default.btn-xs.btn-success.edit-btn(type="button", id="#{val._id}") Edit
+          td: button.btn.btn-default.btn-xs.btn-danger.remove-btn(type="button", id="#{val._id}") Remove
+    script(src="https://code.jquery.com/jquery-1.11.2.min.js")
+    script(src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js")
+    script(type="text/javascript" src="/javascripts/items.js")

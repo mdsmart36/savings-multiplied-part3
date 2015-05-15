@@ -13,9 +13,9 @@ html(lang='en')
 
   body
     .container
+
       // TOP SECTION OF PAGE
       .col-md-12.rh150.light-teal
-        p Mockup Page -- click "Buy" on navigation bar to view auction page
         .row
           .col-md-1
           .col-md-10.rh100.white.inner-top
@@ -24,3 +24,91 @@ html(lang='en')
               li.pillbox.green Contact
               li.pillbox.purple Blog
               li.pillbox.pink Press
+            img.img-responsive.logo(src="/images/savings-multiplied-logo.png", alt="logo")
+            img.img-responsive.tag-line(src="/images/tagline.png", alt="tagline")
+          .col-md-1
+      
+      // NAVBAR
+      .row
+        .col-md-12.rh50.light-pink
+          nav.navbar.navbar-default
+            .light-pink
+              // Collect the nav links, forms, and other content for toggling
+              .collapse.navbar-collapse#bs-example-navbar-collapse-1
+                ul.nav.navbar-nav
+                  li: a(href="#") Buy
+                  li: a(href="/users/profile") Profile
+                  li: a(href="#") How It Works
+                  li: a(href="#") Links
+                  li: a(href="#") Community
+                form.navbar-form.navbar-nav(role="search")
+                  .form-group
+                    input.form-control(type="text", placeholder="Search")
+                  button.btn.btn-default(type="submit") Submit
+
+      // BOTTOM SECTION OF PAGE
+      .col-md-12.dark-teal.rh660
+
+        .row
+          .col-md-1
+          .col-md-10.white.rh500
+            .row
+              .col-md-6
+                //p We're making one aspect of life easier for parents of multiples:
+                br
+                //img.pull-left(src="/images/owls/owl_bright_blue_32.png", alt="owl")
+                //p.med-blue-text Buying and selling gently used sets of clothes
+                //img.img-responsive(src="/images/homepage/left_2_shop_now.png", alt="shop now")
+                //img.img-responsive.pull-right(src="/images/homepage/tree.png", alt="tree")
+
+                p Welcome #{username}
+
+                p #{title}
+
+                form#itemForm(method="post", action="/auction")
+                  input(type="hidden", name="_id", value="#{item_props._id}")
+                  .form-group
+                    label.control-label(for="itemTitle")
+                    | Title
+                    input.form-control#itemTitle(type="text", name="title", value="#{item_props.title}", required)
+                  .form-group
+                    label.control-label(for="itemImage")
+                    | Image URL
+                    input.form-control#itemImage(type="text", name="image", value="#{item_props.image}")
+                  .form-group
+                    label.control-label(for="itemPrice")
+                    | Price
+                    input.form-control#itemPrice(type="text", name="price", value="#{item_props.price}")
+                  .form-group
+                    label.control-label(for="itemEndDate")
+                    | End Date
+                    input.form-control#itemEndDate(type="text", name="endDate", value="#{item_props.endDate}")
+                  input.btn.btn-primary#saveButton(type="submit", value="Save My Item")
+              .col-md-6
+                img.img-responsive.pull-right.pad-5(src="/images/children/twins.jpg", alt="Twins")
+                img.img-responsive.pull-right.pad-5(src="/images/children/triplets.jpg", alt="Triplets")
+                img.img-responsive.pull-right.pad-5(src="/images/children/quads.jpg", alt="Quadruplets")
+          .col-md-1
+
+        .row
+          .col-md-1
+          .col-md-10.white.rh100.link-list
+            img.img-responsive(src="/images/homepage/facebook_callout.png", alt="facebook")
+            img.img-responsive(src="/images/homepage/twitter_callout.png", alt="twitter")
+            img.img-responsive(src="/images/homepage/message_board_callout.png", alt="message board")
+            img.img-responsive(src="/images/homepage/special_offers_callout.png", alt="special offers")
+          .col-md-1
+
+        .row
+          .col-md-12.dark-teal.rh60
+            ul.link-list.pad-top-20
+              li Link here
+              li Link here
+              li Link here
+              li Link here
+              li Link here
+
+    script(src="https://code.jquery.com/jquery-1.11.2.min.js")
+    script(src="https://code.jquery.com/jquery-migrate-1.2.1.min.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js")
+    script(type="text/javascript", src="/javascripts/main.js")

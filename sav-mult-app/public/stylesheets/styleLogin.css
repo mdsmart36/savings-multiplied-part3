@@ -1,0 +1,25 @@
+/*
+html {
+	background: url('../images/girl-reading-books.jpg') no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+*/
+
+a {
+  color: #E62E00;
+}
+
+.additionalContent {
+	display: none; background-color: none;
+}
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #BBB;
+}
+
+#loginError {
+	color: #FFFF00;
+}

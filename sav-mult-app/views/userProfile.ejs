@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <title><%= username %> profile</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+
+    <div class="container">
+
+    <ul class="nav nav-pills navbar-right">
+      <li role="presentation"><a href="/index">Add Books</a></li>
+      <li role="presentation"><a href="/book">List Your Books</a></li>
+      <li role="presentation" class="active"><a href="/users/profile">Your Profile</a></li>
+      <li role="presentation"><a href="/users/logout">Logout</a></li>
+    </ul>
+
+    <p id="uname">
+      Username: <%= username %>
+    </p>
+    <p></p>
+    <p id="ubook">
+      Number of books: <%= books.length %>
+    </p>
+    <p></p>
+    <br>
+    <br>
+
+    </div>
+
+    <marquee behavior="scroll" direction="left">
+      <img src="http://www.picgifs.com/graphics/f/fish/graphics-fish-779675.gif" alt="Swimming fish">
+    </marquee>
+
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

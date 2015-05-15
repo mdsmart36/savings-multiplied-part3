@@ -1,0 +1,24 @@
+doctype html
+head
+  title Savings Multiplied
+  link(rel='stylesheet', href='/stylesheets/styleLogin.css')
+  meta(name="viewport", content="width=device-width, initial-scale=1")
+
+body
+  h1 Welcome to Savings Multiplied
+  h3 Please log in below or 
+    a(href="/users/register") register
+    |  for a new account
+  form(method="POST", action="/users/login", id="loginForm")
+    .formfield
+      .formfield--prompt
+        | Username:
+      input(type="text", id="username", name="username")
+    .formfield
+      .formfield--prompt
+        | Password:
+      input(type="password", id="password", name="password")
+    input(class="submitButton", type="submit")
+
+  #loginError
+    #{message}

@@ -1,0 +1,19 @@
+doctype html
+head
+  title Register
+  link(rel='stylesheet', href='/stylesheets/style.css')
+  meta(name="viewport", content="width=device-width, initial-scale=1")
+
+body
+  h1 Register for Savings Multiplied
+
+  form(method="POST", action="/users/register", id="registerForm")
+    .formfield
+      .formfield--prompt
+        | Username:
+      input(type="text", id="username", name="username")
+    .formfield
+      .formfield--prompt
+        | Password:
+      input(type="password", id="password", name="password")
+    input(class="submitButton", type="submit")
