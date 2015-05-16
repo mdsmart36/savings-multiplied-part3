@@ -16,7 +16,6 @@ html(lang='en')
 
       // TOP SECTION OF PAGE
       .col-md-12.rh150.light-teal
-        p Mockup Page -- click "Buy" on navigation bar to view auction page
         .row
           .col-md-1
           .col-md-10.rh100.white.inner-top
@@ -38,10 +37,11 @@ html(lang='en')
               .collapse.navbar-collapse#bs-example-navbar-collapse-1
                 ul.nav.navbar-nav
                   li: a(href="#") Buy
-                  li: a(href="#") Sell
+                  li: a(href="/users/profile") Profile
                   li: a(href="#") How It Works
                   li: a(href="#") Links
                   li: a(href="#") Community
+                  li: a(href="/users/logout") Logout
                 form.navbar-form.navbar-nav(role="search")
                   .form-group
                     input.form-control(type="text", placeholder="Search")

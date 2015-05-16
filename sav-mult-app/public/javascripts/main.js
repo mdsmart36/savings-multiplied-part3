@@ -14,15 +14,6 @@ $(document).ready(function() {
 	function getAuctionItems() {
 		$.get("http://sweltering-inferno-5214.firebaseio.com/.json",
 			function(data) {
-				/* data is an array of objects with the following properties:
-					 {
-						 endDate: string,
-						 image: string (url),
-						 price: number,
-						 seller: string,
-						 title: string
-					 }
-				*/
 
 				for (var i = 0; i < data.length; i++) {
 					var imageURL = data[i].image;

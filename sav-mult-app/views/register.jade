@@ -1,19 +1,93 @@
 doctype html
 head
-  title Register
-  link(rel='stylesheet', href='/stylesheets/style.css')
+  title SM: Register
   meta(name="viewport", content="width=device-width, initial-scale=1")
+  link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css")
+  link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css")
+  link(href='http://fonts.googleapis.com/css?family=Corben:400,700', rel='stylesheet', type='text/css')
+  link(rel="stylesheet", type="text/css", href="/stylesheets/main.css")
+  link(rel='stylesheet', href='/stylesheets/styleLogin.css')
 
 body
-  h1 Register for Savings Multiplied
 
-  form(method="POST", action="/users/register", id="registerForm")
-    .formfield
-      .formfield--prompt
-        | Username:
-      input(type="text", id="username", name="username")
-    .formfield
-      .formfield--prompt
-        | Password:
-      input(type="password", id="password", name="password")
-    input(class="submitButton", type="submit")
+  .container
+
+    // TOP SECTION OF PAGE
+    .col-md-12.rh150.light-teal
+      .row
+        .col-md-1
+        .col-md-10.rh100.white.inner-top
+          ul.link-list.link-list-right.pad-top-20
+            li.pillbox.baby-blue About
+            li.pillbox.green Contact
+            li.pillbox.purple Blog
+            li.pillbox.pink Press
+          img.img-responsive.logo(src="/images/savings-multiplied-logo.png", alt="logo")
+          img.img-responsive.tag-line(src="/images/tagline.png", alt="tagline")
+        .col-md-1
+
+    .row
+      .col-md-12.rh50.light-pink
+        nav.navbar.navbar-default
+          .light-pink
+            // Collect the nav links, forms, and other content for toggling
+            .collapse.navbar-collapse#bs-example-navbar-collapse-1
+              ul.nav.navbar-nav
+                li: a(href="#") Buy
+                li: a(href="#") Profile
+                li: a(href="#") How It Works
+                li: a(href="#") Links
+                li: a(href="#") Community
+              form.navbar-form.navbar-nav(role="search")
+                .form-group
+                  input.form-control(type="text", placeholder="Search")
+                button.btn.btn-default(type="submit") Submit
+
+    // BOTTOM SECTION OF PAGE
+    .col-md-12.dark-teal.rh660
+      .row
+        .col-md-1
+        .col-md-10.white.rh500
+          .row
+            .col-md-6
+              h3 Register for Savings Multiplied
+
+              form(method="POST", action="/users/register", id="registerForm")
+                .formfield
+                  .formfield--prompt
+                    | Username:
+                  input(type="text", id="username", name="username")
+                .formfield
+                  .formfield--prompt
+                    | Password:
+                  input(type="password", id="password", name="password")
+                input(class="submitButton", type="submit")
+              
+            .col-md-6
+              img.img-responsive.pull-right.pad-5(src="/images/children/twins.jpg", alt="Twins")
+              img.img-responsive.pull-right.pad-5(src="/images/children/triplets.jpg", alt="Triplets")
+              img.img-responsive.pull-right.pad-5(src="/images/children/quads.jpg", alt="Quadruplets")
+        .col-md-1
+
+      .row
+        .col-md-1
+        .col-md-10.white.rh100.link-list
+          img.img-responsive(src="/images/homepage/facebook_callout.png", alt="facebook")
+          img.img-responsive(src="/images/homepage/twitter_callout.png", alt="twitter")
+          img.img-responsive(src="/images/homepage/message_board_callout.png", alt="message board")
+          img.img-responsive(src="/images/homepage/special_offers_callout.png", alt="special offers")
+        .col-md-1
+
+      .row
+        .col-md-12.dark-teal.rh60
+          ul.link-list.pad-top-20
+            li Link here
+            li Link here
+            li Link here
+            li Link here
+            li Link here
+
+  script(src="https://code.jquery.com/jquery-1.11.2.min.js")
+  script(src="https://code.jquery.com/jquery-migrate-1.2.1.min.js")
+  script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js")
+  //script(type="text/javascript", src="/javascripts/main.js")

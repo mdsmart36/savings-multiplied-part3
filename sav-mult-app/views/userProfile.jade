@@ -1,45 +1,108 @@
 doctype html
+html(lang='en')
 head
-  link(href='http://fonts.googleapis.com/css?family=Oswald', rel='stylesheet', type='text/css')
-  title= username | profile
-  link(rel="stylesheet", href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css")
-  link(rel='stylesheet', href='/stylesheets/style.css')
-  link(rel="stylesheet", href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css")
+  meta(charset="utf-8")
+  meta(name="description", content="nss")
+  meta(http-equiv="X-UA-Compatible", content="IE=edge")
   meta(name="viewport", content="width=device-width, initial-scale=1")
+  title SM: User Profile
+  link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css")
+  link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css")
+  link(href='http://fonts.googleapis.com/css?family=Corben:400,700', rel='stylesheet', type='text/css')
+  link(rel="stylesheet", href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css")
+  link(rel="stylesheet", type="text/css", href="/stylesheets/main.css")
+  link(rel='stylesheet', href='/stylesheets/style.css')
 
 body
   .container
-    ul.nav.nav-pills.navbar-right
-      li(role="presentation"): a(href="/index") Add items to sell
-      li(role="presentation", class="active"): a(href="#") View your items / profile
-      //li(role="presentation", class="active"): a(href="/users/profile") Your profile
-      li(role="presentation"): a(href="/users/logout") Logout
+    // TOP SECTION OF PAGE
+    .col-md-12.rh150.light-teal
+      .row
+        .col-md-1
+        .col-md-10.rh100.white.inner-top
+          ul.link-list.link-list-right
+            li.pillbox.baby-blue About
+            li.pillbox.green Contact
+            li.pillbox.purple Blog
+            li.pillbox.pink Press
+          img.img-responsive.logo(src="/images/savings-multiplied-logo.png", alt="logo")
+          img.img-responsive.tag-line(src="/images/tagline.png", alt="tagline")
+        .col-md-1
+    
+    // NAVBAR
+    .row
+      .col-md-12.rh50.light-pink
+        nav.navbar.navbar-default
+          .light-pink
+            // Collect the nav links, forms, and other content for toggling
+            .collapse.navbar-collapse#bs-example-navbar-collapse-1
+              ul.nav.navbar-nav
+                li: a(href="/buy") Buy
+                li: a(href="/index") Sell
+                li: a(href="/users/profile") Profile
+                li: a(href="#") How It Works
+                li: a(href="#") Links
+                li: a(href="#") Community
+                li: a(href="/users/logout") Logout
+              form.navbar-form.navbar-nav(role="search")
+                .form-group
+                  input.form-control(type="text", placeholder="Search")
+                button.btn.btn-default(type="submit") Submit
 
-    p Username: #{username}
-    p
-    p Number of items #{items.length}
+    // BOTTOM SECTION OF PAGE
+    .col-md-12.dark-teal.rh660
+      .row
+        .col-md-1
+        .col-md-10.white.rh500
+          .row
+            .col-md-12
+              p Username: #{username}
+              p
+              p Number of items #{items.length}
 
-    table.table.table-hover
-      tbody
-        tr
-          th
-          th: a(href="#") Title
-          th: a(href="#") Image
-          th: a(href="#") Price
-          th: a(href="#") End Date
-          th
-          th
-      each val in items
-        tr.bookItem(id="book_#{val._id}")
-          td: span.glyphicon.glyphicon-plus-sign(aria-hidden="true", id="#{val._id}")
-          td: em #{val.title}
-          td Image
-            .additionalContent(class="showOrHide_#{val._id}")
-              img(src="http://placehold.it/200x150")
-          td $#{val.price.toFixed(2)}
-          td #{val.endDate}
-          td: button.btn.btn-default.btn-xs.btn-success.edit-btn(type="button", id="#{val._id}") Edit
-          td: button.btn.btn-default.btn-xs.btn-danger.remove-btn(type="button", id="#{val._id}") Remove
-    script(src="https://code.jquery.com/jquery-1.11.2.min.js")
-    script(src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js")
-    script(type="text/javascript" src="/javascripts/items.js")
+              table.table.table-hover
+                tbody
+                  tr
+                    th
+                    th: a(href="/auction?sort=title") Title
+                    th: a(href="#") Image
+                    th: a(href="/auction?sort=price") Price
+                    th: a(href="/auction?sort=endDate") End Date
+                    th
+                    th
+                each val in items
+                  tr.bookItem(id="book_#{val._id}")
+                    td: span.glyphicon.glyphicon-plus-sign(aria-hidden="true", id="#{val._id}")
+                    td: em #{val.title}
+                    td Image
+                      .additionalContent(class="showOrHide_#{val._id}")
+                        img(src="http://placehold.it/200x150")
+                    td $#{val.price.toFixed(2)}
+                    td #{val.endDate}
+                    td: button.btn.btn-default.btn-xs.btn-success.edit-btn(type="button", id="#{val._id}") Edit
+                    td: button.btn.btn-default.btn-xs.btn-danger.remove-btn(type="button", id="#{val._id}") Remove                
+        .col-md-1
+
+      .row
+        .col-md-1
+        .col-md-10.white.rh100.link-list
+          img.img-responsive(src="/images/homepage/facebook_callout.png", alt="facebook")
+          img.img-responsive(src="/images/homepage/twitter_callout.png", alt="twitter")
+          img.img-responsive(src="/images/homepage/message_board_callout.png", alt="message board")
+          img.img-responsive(src="/images/homepage/special_offers_callout.png", alt="special offers")
+        .col-md-1
+
+      .row
+        .col-md-12.dark-teal.rh60
+          ul.link-list.pad-top-20
+            li Link here
+            li Link here
+            li Link here
+            li Link here
+            li Link here
+
+  script(src="https://code.jquery.com/jquery-1.11.2.min.js")
+  script(src="https://code.jquery.com/jquery-migrate-1.2.1.min.js")
+  script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js")
+  //script(type="text/javascript", src="/javascripts/main.js")
+  script(type="text/javascript" src="/javascripts/items.js")
