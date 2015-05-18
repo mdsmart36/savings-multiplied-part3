@@ -76,9 +76,12 @@ body
                     td: em #{val.title}
                     td Image
                       .additionalContent(class="showOrHide_#{val._id}")
-                        img(src="http://placehold.it/200x150")
+                        img.thumb(src="#{val.image}")
                     td $#{val.price.toFixed(2)}
-                    td #{val.endDate}
+                    - var month = val.endDate.getMonth() + 1;
+                    - var day = val.endDate.getDate();
+                    - var year = val.endDate.getFullYear();
+                    td #{month}-#{day}-#{year}
                     td: button.btn.btn-default.btn-xs.btn-success.edit-btn(type="button", id="#{val._id}") Edit
                     td: button.btn.btn-default.btn-xs.btn-danger.remove-btn(type="button", id="#{val._id}") Remove                
         .col-md-1
@@ -104,5 +107,4 @@ body
   script(src="https://code.jquery.com/jquery-1.11.2.min.js")
   script(src="https://code.jquery.com/jquery-migrate-1.2.1.min.js")
   script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js")
-  //script(type="text/javascript", src="/javascripts/main.js")
   script(type="text/javascript" src="/javascripts/items.js")

@@ -13,3 +13,11 @@ a {
 
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
   background-color: #BBB;
+  }
+
+.thumb {
+  max-height: 140px;
+  max-width: 140px;
+  display: inline-block;
+  padding-left: 20px;
+}

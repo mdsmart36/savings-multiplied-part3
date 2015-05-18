@@ -17,14 +17,13 @@ var sendError = function (req, res, err, message) {
   });
 };
 
-// Retrieve all books for the current user
+// Retrieve all items for the current user
 var getUserItems = function (userId) {
   var deferred = Q.defer();
 
   console.log('Another promise to let the calling function know when the database lookup is complete');
   console.log(Item)
   Item.find({user: userId}, function (err, items) {
-    //console.log(err,books);
     if (!err) {
       console.log('Items found = ' + items.length);
       console.log('No errors when looking up auction items. Resolve the promise (even if none were found).');
@@ -38,6 +37,25 @@ var getUserItems = function (userId) {
   return deferred.promise;
 };
 
+// Get all items for sale by other registered users
+var getAllItems = function () {
+  var deferred = Q.defer();
+  var query = Item.find();
+  var currentUser = UserController.getCurrentUser().username;
+  // find all items for sale where user !== current user, sort by price
+  query.where('user').ne(currentUser).sort('price').exec(function (err, items) {
+    if (!err) {
+      console.log('Items found = ' + items.length);
+      console.log('No errors when looking up auction items. Resolve the promise (even if none were found).');
+      deferred.resolve(items);
+    } else {
+      console.log('There was an error looking up auction items. Reject the promise.');
+      deferred.reject(err);
+    }
+  });
+  return deferred.promise;
+};
+
 
 // Handle the request for the registration form
 app.get("/register", function (req, res) {
@@ -48,14 +66,14 @@ app.get("/register", function (req, res) {
 //---------------------------
 // this code will need to be edited
 //------------------------------
-app.get("/book", function (req, res) {
-  //console.log("inside /user/register");
-  res.render("index",{
-    title: "Add a Book to Your Collection",
-    username: UserController.getCurrentUser().username,
-    item_props:{}
-  });
-});
+// app.get("/book", function (req, res) {
+//   //console.log("inside /user/register");
+//   res.render("index",{
+//     title: "Add a Book to Your Collection",
+//     username: UserController.getCurrentUser().username,
+//     item_props:{}
+//   });
+// });
 
 
 app.post("/register", function (req, res) {
@@ -92,9 +110,19 @@ app.post("/register", function (req, res) {
               // Now find the items that belong to the user
 
               getUserItems(validUser._id)
-                .then(function (books) {
-                  // Render the book list
-                  res.redirect("book");
+                .then(function () {
+                  
+                  res.render('index', { 
+                    title: "List an item to sell",
+                    username: UserController.getCurrentUser().username,
+                    item_props: {
+                      _id: "",
+                      title: "",
+                      image: "",
+                      price: "",
+                      endDate: ""
+                    } 
+                  });
                 })
                 .fail(function (err) {
                   sendError(req, res, {errors: err.message}, "Failed")
@@ -135,14 +163,12 @@ app.post("/login", function (req, res) {
 
       console.log('Ok, now we are back in the route handling code and have found a user');
       console.log('validUser',validUser);
-      console.log('Find any books that are assigned to the user');
+      console.log('Find any items that are assigned to the user');
 
-      // Now find the books that belong to the user
+      // Now find the items that belong to the user
 
       getUserItems(validUser.username)
         .then(function (items) {
-          // Render the book list
-          //res.redirect("/index");
           res.render('index', { 
             title: "List an item to sell",
             username: UserController.getCurrentUser().username,
@@ -163,7 +189,6 @@ app.post("/login", function (req, res) {
     // After the database call is complete but failed
     .fail(function (err) {
       console.log('Failed looking up the user');
-      // sendError(req, res, {errors: err.message}, "Failed")
       res.render('login', {
          message: "Unable to locate username or password. Please Register or try again."
        });
@@ -172,7 +197,6 @@ app.post("/login", function (req, res) {
 
 app.get("/profile", function (req, res) {
   var user = UserController.getCurrentUser();
-
   if (user !== null) {
     getUserItems(user.username).then(function (items) {
       res.render("userProfile", {
@@ -183,12 +207,21 @@ app.get("/profile", function (req, res) {
   } else {
     res.redirect("/");
   }
-
 });
 
 app.get('/logout', function (req, res) {
   UserController.logout();
   res.redirect("/");
+});
+
+app.get('/getAllItems', function (req, res) {
+  getAllItems()
+    .then(function (items) {
+      res.send(items);
+    })
+    .fail(function (err) {
+      sendError(req, res, {errors: err.message}, "Failed")
+    });
 });
 
 

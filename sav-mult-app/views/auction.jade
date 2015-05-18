@@ -142,11 +142,11 @@ html(lang='en')
               p Change slider value, then click Submit above to display products
               .slider
                 label(for="minPrice") Minimum Price
-                input#minPrice(type="range", min=0, max=500, value=25, step=10, oninput="nss.outputUpdate(value, id)")
-                output#js-minPrice(for="minPrice") 25
+                input#minPrice(type="range", min=0, max=1000, value=0, step=10, oninput="nss.outputUpdate(value, id)")
+                output#js-minPrice(for="minPrice") 0
               .slider
                 label(for="maxPrice") Maximum Price
-                input#maxPrice(type="range", min=0, max=500, value=25, step=10, oninput="nss.outputUpdate(value, id)")
+                input#maxPrice(type="range", min=0, max=1000, value=25, step=10, oninput="nss.outputUpdate(value, id)")
                 output#js-maxPrice(for="maxPrice") 25
               #auction-items
 
